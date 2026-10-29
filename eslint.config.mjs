@@ -42,6 +42,11 @@ export default tseslint.config(
       "@typescript-eslint/no-explicit-any": "off",
     },
   },
+  // Chrome extension (plain JS, runs in the browser with chrome.* APIs).
+  {
+    files: ["zotero-checker-extension/**/*.{js,mjs}"],
+    languageOptions: { globals: { ...globals.webextensions } },
+  },
   // Disable rules that conflict with Prettier formatting.
   prettier,
 );

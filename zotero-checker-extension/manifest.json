@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Zotero 查重助手",
+  "short_name": "Zotero 查重",
+  "version": "1.0.0",
+  "description": "浏览论文或准备添加文献时，自动检测它是否已在你的 Zotero 文库中（支持 DOI、arXiv、PMID、ISBN、网址和标题匹配）。",
+  "minimum_chrome_version": "111",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["storage", "unlimitedStorage", "alarms", "activeTab"],
+  "host_permissions": [
+    "http://127.0.0.1:23119/*",
+    "https://api.zotero.org/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["src/content/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Zotero 查重",
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": true
+  }
+}

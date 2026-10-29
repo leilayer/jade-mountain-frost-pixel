@@ -1,0 +1,251 @@
+body {
+  width: 380px;
+  padding-bottom: 12px;
+}
+.top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.top h1 {
+  flex: 1;
+  margin: 0;
+  font-size: 15px;
+}
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+}
+.icon-btn:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+.icon-btn.spin svg {
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+.status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.status .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--missing);
+  flex: none;
+}
+.status.ok .dot {
+  background: var(--found);
+}
+.status.warn .dot {
+  background: var(--possible);
+}
+.status.err {
+  color: var(--error);
+  background: var(--error-bg);
+}
+.status.err .dot {
+  background: var(--error);
+}
+.status a {
+  margin-left: auto;
+  white-space: nowrap;
+}
+section {
+  padding: 10px 12px 0;
+}
+h2 {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+.page-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px;
+}
+.page-card.muted {
+  color: var(--muted);
+}
+.detected {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.detected .ptitle {
+  color: var(--text);
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.verdict {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+.verdict .ico {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 12px;
+  flex: none;
+}
+.verdict.found {
+  background: var(--found-bg);
+  color: var(--found);
+}
+.verdict.found .ico {
+  background: var(--found);
+}
+.verdict.possible {
+  background: var(--possible-bg);
+  color: var(--possible);
+}
+.verdict.possible .ico {
+  background: var(--possible);
+}
+.verdict.notFound {
+  background: var(--missing-bg);
+  color: var(--missing);
+}
+.verdict.notFound .ico {
+  background: var(--missing);
+}
+.verdict.error {
+  background: var(--error-bg);
+  color: var(--error);
+}
+.verdict.error .ico {
+  background: var(--error);
+}
+.verdict small {
+  font-weight: 400;
+  margin-left: auto;
+  opacity: 0.85;
+}
+.match {
+  padding: 8px 0 0;
+}
+.match + .match {
+  margin-top: 8px;
+  border-top: 1px dashed var(--border);
+}
+.match .mtitle {
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.match .msub {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 2px 0 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 6px;
+  align-items: center;
+}
+.match .actions {
+  display: flex;
+  gap: 6px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+.hint {
+  font-size: 11px;
+  color: var(--muted);
+}
+textarea {
+  resize: vertical;
+  min-height: 72px;
+  max-height: 220px;
+}
+.summary {
+  margin: 10px 0 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.summary b.f {
+  color: var(--found);
+}
+.summary b.p {
+  color: var(--possible);
+}
+.qr {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 6px;
+  padding: 7px 0;
+  border-top: 1px solid var(--border);
+}
+.qr .ico {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 11px;
+  margin-top: 1px;
+}
+.qr.found .ico {
+  background: var(--found);
+}
+.qr.possible .ico {
+  background: var(--possible);
+}
+.qr.notFound .ico,
+.qr.empty .ico,
+.qr.error .ico {
+  background: var(--missing);
+}
+.qr .line {
+  font-size: 12px;
+  color: var(--muted);
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.qr .match {
+  padding-top: 4px;
+}
+#queryResults {
+  max-height: 300px;
+  overflow-y: auto;
+}

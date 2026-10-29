@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>Zotero 查重</title>
+    <link rel="stylesheet" href="../ui.css" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="top">
+      <img src="../../icons/icon48.png" alt="" width="22" height="22" />
+      <h1>Zotero 查重</h1>
+      <button class="icon-btn" id="syncBtn" title="立即同步文库" aria-label="立即同步文库">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 5V2L8 6l4 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7Z"/></svg>
+      </button>
+      <button class="icon-btn" id="optionsBtn" title="设置" aria-label="设置">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M19.4 13a7.5 7.5 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.6 7.6 0 0 0-1.7-1L15 3.5h-4l-.4 2.5a7.6 7.6 0 0 0-1.7 1l-2.4-1-2 3.4L6.6 11a7.5 7.5 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a7.6 7.6 0 0 0 1.7 1l.4 2.5h4l.4-2.5a7.6 7.6 0 0 0 1.7-1l2.4 1 2-3.4-2.1-1.6ZM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z" transform="translate(-1 0)"/></svg>
+      </button>
+    </header>
+
+    <div class="status" id="status"><span class="dot"></span><span id="statusText">正在读取文库…</span></div>
+
+    <section>
+      <h2>当前页面</h2>
+      <div id="page" class="page-card muted">正在识别…</div>
+    </section>
+
+    <section>
+      <h2>查询文献</h2>
+      <textarea
+        id="query"
+        rows="4"
+        spellcheck="false"
+        placeholder="粘贴 DOI、arXiv 号、PMID、ISBN、网址或标题；也可以粘贴整段参考文献，每行一条"
+      ></textarea>
+      <div class="row">
+        <span class="hint">Ctrl / ⌘ + Enter 查询</span>
+        <button class="btn primary" id="queryBtn">查询</button>
+      </div>
+      <div id="queryResults"></div>
+    </section>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

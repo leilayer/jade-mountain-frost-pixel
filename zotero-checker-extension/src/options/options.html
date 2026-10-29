@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zotero 查重 · 设置</title>
+    <link rel="stylesheet" href="../ui.css" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <img src="../../icons/icon128.png" alt="" width="40" height="40" />
+        <div>
+          <h1>Zotero 查重 · 设置</h1>
+          <p class="muted">浏览文献时自动判断它是否已经在你的 Zotero 文库中。</p>
+        </div>
+      </header>
+
+      <section class="panel">
+        <h2>数据来源</h2>
+        <label class="choice">
+          <input type="radio" name="source" value="local" />
+          <div>
+            <div class="choice-title">本地 Zotero 7 <span class="tag">推荐</span></div>
+            <div class="muted">直接读取电脑上的 Zotero，速度快、无需账号。Zotero 关闭时使用上次同步的缓存。</div>
+            <ol class="steps">
+              <li>安装并打开 <a href="https://www.zotero.org/download/" target="_blank" rel="noopener">Zotero 7</a> 或更新版本。</li>
+              <li>
+                Zotero → <b>设置</b>（macOS 为“Zotero → 设置…”，Windows 为“编辑 → 设置”）→ <b>高级</b> → <b>杂项</b>，
+                勾选 <b>“允许此计算机上的其他应用程序与 Zotero 通讯”</b>
+                <span class="muted">（Allow other applications on this computer to communicate with Zotero）</span>。
+              </li>
+              <li>点击下方“测试连接并同步”。</li>
+            </ol>
+          </div>
+        </label>
+        <label class="choice">
+          <input type="radio" name="source" value="web" />
+          <div>
+            <div class="choice-title">Zotero 网页 API</div>
+            <div class="muted">通过 zotero.org 读取已同步的文库，Zotero 没开也能用。需要一个只读 API Key。</div>
+            <div class="web-fields">
+              <div class="field-row">
+                <input type="password" id="apiKey" placeholder="粘贴 API Key" autocomplete="off" spellcheck="false" />
+                <button class="btn" id="verifyBtn">验证</button>
+              </div>
+              <div class="muted small" id="keyInfo">
+                在 <a href="https://www.zotero.org/settings/keys/new" target="_blank" rel="noopener">zotero.org/settings/keys/new</a>
+                创建 Key，勾选“Allow library access”；如需群组文库，再给群组授予读取权限。
+              </div>
+            </div>
+          </div>
+        </label>
+      </section>
+
+      <section class="panel">
+        <h2>显示与匹配</h2>
+        <label class="check"><input type="checkbox" id="includeGroups" /> 同时检查群组文库</label>
+        <label class="check"><input type="checkbox" id="showBanner" /> 在文献页面右下角显示提示卡片</label>
+        <label class="check indent"><input type="checkbox" id="showNotFound" /> 文献不在库中时也提示（6 秒后自动隐藏）</label>
+        <label class="check"><input type="checkbox" id="annotateLinks" /> 在搜索结果（Google 学术、PubMed、arXiv、知网、百度学术等）和 DOI 链接旁标记已收录的文献</label>
+        <div class="slider">
+          <label for="fuzzyThreshold">相似标题判定阈值</label>
+          <input type="range" id="fuzzyThreshold" min="0.7" max="0.98" step="0.01" />
+          <output id="fuzzyValue"></output>
+        </div>
+        <p class="muted small">
+          DOI、arXiv 号、PMID、ISBN、网址或标题完全一致时判定为“已收录”；标题相似度超过阈值时判定为“可能重复”。阈值越低，提示越多。
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>连接状态</h2>
+        <div class="status-box" id="statusBox">正在读取…</div>
+        <div class="buttons">
+          <button class="btn primary" id="syncBtn">测试连接并同步</button>
+          <button class="btn" id="clearBtn">清除缓存并重新下载</button>
+        </div>
+      </section>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="options.js"></script>
+  </body>
+</html>
